@@ -1,4 +1,5 @@
-String color;
+public class Cube{
 public Cube(){
   
+}
 }
