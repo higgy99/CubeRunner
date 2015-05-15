@@ -1,1 +1,6 @@
+class Cube{
+  public Cube(){
+    
+  }
+}
 

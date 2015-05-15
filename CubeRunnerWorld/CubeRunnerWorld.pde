@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-public CubeRunnerWorld(){
-  background(255, 204, 0);
-}
-=======
+  size(700,500);
+  background(255, 255, 255);
+  rect(1,1,1,1);
+  
 
->>>>>>> origin/master
+
