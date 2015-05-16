@@ -1,8 +1,9 @@
 Runner runner =  new Runner();
+Cube cube = new Cube();
 boolean showTraingleOnStart = true;//used to make triangle appear before player even presses a button
 
 void setup() {
-  size(700, 500);
+  size(700, 500, OPENGL);
 }
 
 void draw() {
@@ -10,7 +11,6 @@ void draw() {
   stroke(255, 255, 255);
   fill(225, 225, 225);
   rect(0, 250, 699, 249);
-  
   if (keyCode == RIGHT && keyPressed) {
     runner.increaseXPos();
   } else if (keyCode == LEFT && keyPressed) {
