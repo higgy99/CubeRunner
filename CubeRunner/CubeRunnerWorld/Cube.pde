@@ -1,7 +1,7 @@
 public class Cube {
 
-  public Cube() {
-    
+  public Cube(int xPos) {
+   display(xPos);
   }
 
   public void display(int xPos) {
