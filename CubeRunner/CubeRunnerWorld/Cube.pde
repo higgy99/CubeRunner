@@ -9,6 +9,7 @@ public class Cube {
     rotateX(-0.1);
     lights();
     fill((int)((Math.random())*225), (int)((Math.random())*225), (int)((Math.random())*225));
+    stroke((int)((Math.random())*225), (int)((Math.random())*225), (int)((Math.random())*225));
     box(27);
 }
 }
