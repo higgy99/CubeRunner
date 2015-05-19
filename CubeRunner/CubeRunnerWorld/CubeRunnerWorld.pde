@@ -1,10 +1,7 @@
 Runner runner =  new Runner();
 boolean showTraingleOnStart = true;//used to make triangle appear before player even presses a button
-PImage bg;
 void setup() {
   size(700, 500, OPENGL);  
-  bg = loadImage("1.png");
- 
 }
 
 void draw() {
@@ -31,6 +28,7 @@ void draw() {
     fill(225, 225, 225);
     triangle(321, 455, 338, 440, 355, 455);
   }
+  new Cube((int)((Math.random())*650)+25);
 }
 
 
