@@ -1,10 +1,15 @@
 Runner runner =  new Runner();
 boolean showTraingleOnStart = true;//used to make triangle appear before player even presses a button
+PImage bg;
 void setup() {
   size(700, 500, OPENGL);  
+  bg = loadImage("1.png");
+ 
 }
 
 void draw() {
+ 
+  
   if (keyCode == RIGHT && keyPressed)
   rotateZ(0.01);
   else if(keyCode == LEFT && keyPressed)
@@ -13,7 +18,6 @@ void draw() {
   stroke(255, 255, 255);
   fill(225, 225, 225);
   rect(0, 250, 699, 250);
-  
   if (keyCode == RIGHT && keyPressed) {
    runner.increaseXPos();
   } else if (keyCode == LEFT && keyPressed) {
@@ -27,8 +31,6 @@ void draw() {
     fill(225, 225, 225);
     triangle(321, 455, 338, 440, 355, 455);
   }
-  
-  new Cube((int)((Math.random())*650)+25);
 }
 
 
