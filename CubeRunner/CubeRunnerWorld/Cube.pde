@@ -8,8 +8,8 @@ public class Cube {
     translate(xPos, 270, 0);
     rotateX(-0.1);
     lights();
-    fill((int)((Math.random())*225), (int)((Math.random())*225), (int)((Math.random())*225));
-    stroke((int)((Math.random())*225), (int)((Math.random())*225), (int)((Math.random())*225));
+    fill((int)((Math.random())*255), (int)((Math.random())*255), (int)((Math.random())*255));
+    stroke((int)((Math.random())*255), (int)((Math.random())*255), (int)((Math.random())*255));
     box(27);
 }
 }
