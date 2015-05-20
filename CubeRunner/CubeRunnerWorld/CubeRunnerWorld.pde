@@ -30,7 +30,7 @@ void draw() {
     translate(runner.getXPos(), 0);
     fill(100, 100, 100);
     stroke(225, 225, 225);
-    triangle(321, 455, 338, 422, 355, 455);
+    triangle(321, 455, 338, 422/*penis*/, 355, 455);
     fill(225, 225, 225);
     triangle(321, 455, 338, 440, 355, 455);
   }
