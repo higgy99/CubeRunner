@@ -5,7 +5,6 @@ Minim minim;
 boolean showTraingleOnStart = true;//used to make triangle appear before player even presses a button
 void setup() {
   size(700, 500, OPENGL); 
-  bg = loadImage("1.png");
   minim = new Minim(this);
   bgSong = minim.loadFile("bg.mp3", 2048);
   bgSong.play(); 
