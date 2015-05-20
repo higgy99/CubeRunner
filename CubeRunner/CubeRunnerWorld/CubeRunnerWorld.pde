@@ -4,15 +4,11 @@ AudioPlayer bgSong;
 Minim minim;
 boolean showTraingleOnStart = true;//used to make triangle appear before player even presses a button
 void setup() {
-<<<<<<< Updated upstream
-  size(700, 500, OPENGL);  
-=======
   size(700, 500, OPENGL); 
   bg = loadImage("1.png");
   minim = new Minim(this);
   bgSong = minim.loadFile("bg.mp3", 2048);
   bgSong.play(); 
->>>>>>> Stashed changes
 }
 
 void draw() {
@@ -39,10 +35,6 @@ void draw() {
     fill(225, 225, 225);
     triangle(321, 455, 338, 440, 355, 455);
   }
-<<<<<<< Updated upstream
-=======
-  
->>>>>>> Stashed changes
   new Cube((int)((Math.random())*650)+25);
 }
 public void stop(){
