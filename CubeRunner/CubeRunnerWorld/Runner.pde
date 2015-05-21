@@ -6,11 +6,11 @@ public class Runner {
   }
 
   public void increaseXPos() {
-      runnerXPos+=5;
+      runnerXPos+=10;
   }
 
   public void decreaseXPos() {
-      runnerXPos-=5;
+      runnerXPos-=10;
   }
   
   public int getXPos() {

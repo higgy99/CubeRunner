@@ -10,12 +10,12 @@ public class Cube {
       xPositions[i] = (int)((Math.random())*650) + 25;
   }
 
-  public void display() {
-    translate(350, 270, 350);
+  public void display(int regulateX) {
+    translate(xPositions[0] - regulateX, 270);
     rotateX(-0.1);
     lights();
     fill((int)((Math.random())*255 + 100), (int)((Math.random())*225 - 100), (0));
-    stroke(0,0,0);
+    stroke((int)((Math.random())*255 + 100), (int)((Math.random())*225 - 100), (0));
     box(8);
   }
 }
