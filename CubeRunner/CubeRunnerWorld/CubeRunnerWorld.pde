@@ -18,10 +18,6 @@ void draw() {
   minim = new Minim(this);
   bgSong = minim.loadFile("bg.mp3", 2048);
   bgSong.play(); 
-}
-
-void draw() {
-  
   if (keyCode == RIGHT && keyPressed)
   rotateZ(0.01);
   else if(keyCode == LEFT && keyPressed)
