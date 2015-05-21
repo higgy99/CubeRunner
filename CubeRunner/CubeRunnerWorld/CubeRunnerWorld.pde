@@ -1,8 +1,11 @@
 Runner runner =  new Runner();
 Cube cubes = new Cube();
+//Music vars
 import ddf.minim.*;
 AudioPlayer bgSong;
 Minim minim;
+//Score vars
+PFont font;
 
 boolean showTraingleOnStart = true;//used to make triangle appear before player even presses a button
 
@@ -10,9 +13,12 @@ void setup() {
 
   cubes.createXPositions();
   size(700, 500, OPENGL);  
+  //Music setup
   minim = new Minim(this);
   bgSong = minim.loadFile("bg.mp3", 2048);
-  bgSong.play(); 
+  bgSong.play();
+  // Score setup
+  font = createFont("Arial",16,true); 
   
 }
 
@@ -40,6 +46,10 @@ void draw() {
   }
   
    cubes.display();
+  textFont(font,16);       
+  fill(225);
+  textAlign(CENTER);  
+  text("Hello Strings!",10,100); 
 }
 public void stop(){
     bgSong.close();
