@@ -10,14 +10,14 @@ void setup() {
 
   cubes.createXPositions();
   size(700, 500, OPENGL);  
+    minim = new Minim(this);
+  bgSong = minim.loadFile("bg.mp3", 2048);
+  bgSong.play(); 
   
 }
 
 void draw() {
   size(700, 500, OPENGL); 
-  minim = new Minim(this);
-  bgSong = minim.loadFile("bg.mp3", 2048);
-  bgSong.play(); 
   if (keyCode == RIGHT && keyPressed)
   rotateZ(0.01);
   else if(keyCode == LEFT && keyPressed)
