@@ -1,22 +1,19 @@
 Runner runner =  new Runner();
-<<<<<<< HEAD
 Cube cubes = new Cube();
-=======
 import ddf.minim.*;
 AudioPlayer bgSong;
 Minim minim;
->>>>>>> origin/master
+
 boolean showTraingleOnStart = true;//used to make triangle appear before player even presses a button
 
 void setup() {
-<<<<<<< HEAD
+
   cubes.createXPositions();
   size(700, 500, OPENGL);  
   
 }
 
 void draw() {
-=======
   size(700, 500, OPENGL); 
   minim = new Minim(this);
   bgSong = minim.loadFile("bg.mp3", 2048);
@@ -24,8 +21,6 @@ void draw() {
 }
 
 void draw() {
-  
->>>>>>> origin/master
   
   if (keyCode == RIGHT && keyPressed)
   rotateZ(0.01);
