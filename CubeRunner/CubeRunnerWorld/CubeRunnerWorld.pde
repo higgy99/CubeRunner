@@ -67,7 +67,7 @@ void draw() {
 
 public void createXPositions() {
   for (int i = 0; i < xPositions.length; i++)
-    xPositions[i] = (int)((Math.random())*650) + 25;
+    xPositions[i] = (int)((Math.random())*620) + 80;
 }
 
 public void stop() {
