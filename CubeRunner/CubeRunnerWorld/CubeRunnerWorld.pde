@@ -3,28 +3,19 @@ Runner runner =  new Runner();
 Cube cubes = new Cube();
 AudioPlayer bgSong;
 Minim minim;
-//Score vars
+//Score var
 PFont font;
-<<<<<<< HEAD
-=======
-//Background vars
+//Background var
 PImage bg;
-
->>>>>>> origin/master
 boolean showTraingleOnStart = true;//used to make triangle appear before player even presses a button
 int numCubes = 10;
 int i = 0;
 int[] xPositions = new int[10];//10 cubes on the screen at once
 
 void setup() {
-<<<<<<< HEAD
-=======
-
+  createXPositions();
+  size(700,500,OPENGL);
    //Background Setup
-  bg = loadImage("bg.jpg");
-  cubes.createXPositions();
->>>>>>> origin/master
-  size(700, 500, OPENGL);  
   //Music setup
   minim = new Minim(this);
   bgSong = minim.loadFile("bg.mp3", 2048);
@@ -32,7 +23,6 @@ void setup() {
   createXPositions();
   bgSong.play();
   // Score setup
-<<<<<<< HEAD
   font = createFont("Arial", 16, true);
 }
 
@@ -42,17 +32,11 @@ void draw() {
   else if (keyCode == LEFT && keyPressed)
     rotateZ(-0.01);
   background(255, 255, 255);
-=======
-  font = createFont("Arial",16,true); 
-}
-
-void draw() {
-  background(bg);
->>>>>>> origin/master
   stroke(255, 255, 255);
   fill(225, 225, 225);
   rect(0, 250, 800, 250);
-
+  
+  font = createFont("Arial",16,true); 
   textFont(font, 16);       
   fill(0, 0, 0);
   textAlign(CENTER);  
@@ -70,27 +54,13 @@ void draw() {
     triangle(321, 455, 338, 422, 355, 455);
     fill(225, 225, 225);
     triangle(321, 455, 338, 440, 355, 455);
+    translate(-runner.getXPos(), 0);
   }
-<<<<<<< HEAD
-
-  new Cube().display();
-  for(int i = 0; i < 5; i++){
-    translate(xPositions[i]- runner.getXPos(), 300);
-  box(8);
-=======
-  stroke(0,205,205);
-  fill(0,0,105);
-  rect(30,0 ,125,50);
-  textFont(font,16);       
-  fill(225);
-  textAlign(RIGHT);  
-  text("Score:",100,25); 
-}
-public void stop(){
-    bgSong.close();
-   minim.stop();
-  super.stop(); 
->>>>>>> origin/master
+   new Cube().display();
+   translate(0,270, 250);
+  for(int i = 0; i < 10; i++){
+    translate(xPositions[i], 0);
+     box(8);
   }
 }
 
