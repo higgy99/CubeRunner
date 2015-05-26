@@ -1,4 +1,5 @@
 public class Cube {
+  private int zPosition = 50;
   public void display() {
     rotateX(-0.1);
     lights();

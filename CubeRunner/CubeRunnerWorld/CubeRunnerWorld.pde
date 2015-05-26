@@ -57,10 +57,11 @@ void draw() {
     translate(-runner.getXPos(), 0);
   }
    new Cube().display();
-   translate(0,270, 250);
+   translate(0, 250,200);
   for(int i = 0; i < 10; i++){
     translate(xPositions[i], 0);
      box(8);
+     translate(-xPositions[i], 0);
   }
 }
 
