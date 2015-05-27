@@ -1,6 +1,7 @@
 import ddf.minim.*;
 Runner runner =  new Runner();
 Cube cubes = new Cube();
+Score gameScore = new Score();
 AudioPlayer bgSong;
 Minim minim;
 //Score var
@@ -11,11 +12,10 @@ boolean showTraingleOnStart = true;//used to make triangle appear before player 
 int numCubes = 10;
 int i = 50;
 int[] xPositions = new int[20];//10 cubes on the screen at once
-
 void setup() {
   createXPositions();
-  size(700,500,OPENGL);
-   //Background Setup
+  size(700, 500, OPENGL);
+  //Background Setup
   //Music setup
   minim = new Minim(this);
   bgSong = minim.loadFile("bg.mp3", 2048);
@@ -35,13 +35,17 @@ void draw() {
   stroke(255, 255, 255);
   fill(225, 225, 225);
   rect(0, 250, 800, 250);
-  
-  font = createFont("Arial",16,true); 
+
+  font = createFont("Arial", 16, true); 
   textFont(font, 16);       
   fill(0, 0, 0);
+  if(gameScore.getScore() >= 1000)
+  fill(255,255,255);
   textAlign(CENTER);  
-  text("SCORE: ", 50, 25);
+  text("SCORE: " + gameScore.getScore(), 75, 25);
 
+  if (gameScore.getScore() >= 1000)
+    background(0, 0, 0);
   if (keyCode == RIGHT && keyPressed) {
     runner.increaseXPos();
   } else if (keyCode == LEFT && keyPressed) {
@@ -51,23 +55,36 @@ void draw() {
     translate(runner.getXPos(), 0);
     fill(100, 100, 100);
     stroke(225, 225, 225);
+    if (gameScore.getScore() >= 1000) {
+      stroke(0, 0, 0);
+      fill(0, 255, 0);
+    }
     triangle(321, 455, 338, 422, 355, 455);
     fill(225, 225, 225);
+    if (gameScore.getScore() >= 1000) {
+      stroke(0, 0, 0);
+      fill(0, 0, 0);
+    }
     triangle(321, 455, 338, 440, 355, 455);
     translate(-runner.getXPos(), 0);
   }
-   new Cube().display();
-   translate(0, 250,i);
-  for(int i = 0; i < 10; i++){
+  new Cube().display();
+  if (gameScore.getScore() >= 1000) {
+    stroke(0, 255, 0);
+    fill(0, 0, 0);
+  }
+  translate(0, 250, i);
+  for (int i = 0; i < 10; i++) {
     translate(xPositions[i], 0);
-     box(7);
-     translate(-xPositions[i], 0);
+    box(7);
+    translate(-xPositions[i], 0);
   }
   i+=4;
-  if(i > 400){
-  i = 200;
-  createXPositions();
+  if (i > 400) {
+    i = 200;
+    createXPositions();
   }
+  gameScore.update();
 }
 
 public void createXPositions() {
