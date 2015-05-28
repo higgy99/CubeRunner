@@ -23,7 +23,8 @@ void setup() {
   createXPositions();
   bgSong.play();
   // Score setup
-  font = createFont("Arial", 16, true);
+  font = createFont("Monofett.ttf", 32);
+ 
 }
 
 void draw() {
@@ -37,14 +38,13 @@ void draw() {
   rect(0, 250, 800, 250);
   if (gameScore.getScore() >= 1000)
     background(0, 0, 0);
-  font = createFont("Arial", 16, true); 
-  textFont(font, 16);       
+  textFont(font, 32);       
   if (gameScore.getScore() >= 1000)
     fill(0, 255, 0);
   else
     fill(0, 0, 0);
   textAlign(CENTER);  
-  text("SCORE: " + gameScore.getScore(), 75, 25);
+  text("SCORE: " + gameScore.getScore(), 95, 25);
 
 
 
