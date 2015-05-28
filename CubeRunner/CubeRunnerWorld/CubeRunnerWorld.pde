@@ -35,17 +35,19 @@ void draw() {
   stroke(255, 255, 255);
   fill(225, 225, 225);
   rect(0, 250, 800, 250);
-
+  if (gameScore.getScore() >= 1000)
+    background(0, 0, 0);
   font = createFont("Arial", 16, true); 
   textFont(font, 16);       
-  fill(0, 0, 0);
-  if(gameScore.getScore() >= 1000)
-  fill(255,255,255);
+  if (gameScore.getScore() >= 1000)
+    fill(0, 255, 0);
+  else
+    fill(0, 0, 0);
   textAlign(CENTER);  
   text("SCORE: " + gameScore.getScore(), 75, 25);
 
-  if (gameScore.getScore() >= 1000)
-    background(0, 0, 0);
+
+
   if (keyCode == RIGHT && keyPressed) {
     runner.increaseXPos();
   } else if (keyCode == LEFT && keyPressed) {
