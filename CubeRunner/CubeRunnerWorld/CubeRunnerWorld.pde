@@ -11,7 +11,7 @@ PImage bg;
 boolean showTraingleOnStart = true;//used to make triangle appear before player even presses a button
 int numCubes = 10;
 int i = 50;
-int[] xPositions = new int[20];//10 cubes on the screen at once
+int[] xPositions = new int[10];//10 cubes on the screen at once
 void setup() {
   createXPositions();
   size(700, 500, OPENGL);
@@ -76,14 +76,22 @@ void draw() {
     fill(0, 0, 0);
   }
   translate(0, 250, i);
-  for (int i = 0; i < 10; i++) {
+  for(int j = 0; j < i; j += 20){
+    translate(0,0,i-j*4);
+  for (int i = 0; i < xPositions.length; i++) {
     translate(xPositions[i], 0);
     box(7);
-    translate(-xPositions[i], 0);
+    translate(-xPositions[i], 0);//undo translate so it is not cumlative
+  }
+  translate(0,0,-(i-j*2));
+  if(j >= i){
+  j = 0;
+  createXPositions();
+  }
   }
   i+=4;
   if (i > 400) {
-    i = 200;
+    i = 100;
     createXPositions();
   }
   gameScore.update();
@@ -91,7 +99,7 @@ void draw() {
 
 public void createXPositions() {
   for (int i = 0; i < xPositions.length; i++)
-    xPositions[i] = (int)((Math.random())*550) + 150;
+    xPositions[i] = (int)((Math.random())*550) + 150;  
 }
 
 public void stop() {
