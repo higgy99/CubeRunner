@@ -9,22 +9,18 @@ PFont font;
 //Background var
 PImage bg;
 boolean showTraingleOnStart = true;//used to make triangle appear before player even presses a button
-int numCubes = 10;
 int i = 50;
-int[] xPositions = new int[10];//10 cubes on the screen at once
+int max = 0;
+int min = 0;
 void setup() {
-  createXPositions();
   size(700, 500, OPENGL);
   //Background Setup
   //Music setup
   minim = new Minim(this);
   bgSong = minim.loadFile("bg.mp3", 2048);
   bgSong.play();   
-  createXPositions();
   bgSong.play();
   // Score setup
-  font = createFont("Monofett.ttf", 32);
- 
 }
 
 void draw() {
@@ -36,18 +32,19 @@ void draw() {
   stroke(255, 255, 255);
   fill(225, 225, 225);
   rect(0, 250, 800, 250);
+
+font = createFont("Monofett.ttf", 32);
+  textFont(font, 32);       
+  fill(0, 0, 0);
+  if (gameScore.getScore() >= 1000) {
+    stroke(0, 0, 0);
+    fill(0, 255, 0);
+  }
+  textAlign(CENTER);  
+  text("SCORE: " + gameScore.getScore(), 100, 25);
+  
   if (gameScore.getScore() >= 1000)
     background(0, 0, 0);
-  textFont(font, 32);       
-  if (gameScore.getScore() >= 1000)
-    fill(0, 255, 0);
-  else
-    fill(0, 0, 0);
-  textAlign(CENTER);  
-  text("SCORE: " + gameScore.getScore(), 95, 25);
-
-
-
   if (keyCode == RIGHT && keyPressed) {
     runner.increaseXPos();
   } else if (keyCode == LEFT && keyPressed) {
@@ -75,31 +72,23 @@ void draw() {
     stroke(0, 255, 0);
     fill(0, 0, 0);
   }
+  if (i > 390) {
+    max = (int)(Math.random()*150)+300;
+    min = max - 30;
+  }
   translate(0, 250, i);
-  for(int j = 0; j < i; j += 20){
-    translate(0,0,i-j*4);
-  for (int i = 0; i < xPositions.length; i++) {
-    translate(xPositions[i], 0);
-    box(7);
-    translate(-xPositions[i], 0);//undo translate so it is not cumlative
-  }
-  translate(0,0,-(i-j*2));
-  if(j >= i){
-  j = 0;
-  createXPositions();
-  }
+  for (int i = 0; i < 700; i+=7) {
+    if (!(i < max && i > min)) {
+      translate(i, 0);
+      box(7);
+      translate(-i, 0);
+    }
   }
   i+=4;
   if (i > 400) {
     i = 100;
-    createXPositions();
   }
   gameScore.update();
-}
-
-public void createXPositions() {
-  for (int i = 0; i < xPositions.length; i++)
-    xPositions[i] = (int)((Math.random())*550) + 150;  
 }
 
 public void stop() {
