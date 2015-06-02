@@ -4,8 +4,9 @@ Cube cubes = new Cube();
 Score gameScore = new Score();
 AudioPlayer bgSong;
 Minim minim;
-//Score var
+//Font vars
 PFont font;
+PFont endFont;
 //Background var
 PImage bg;
 boolean showTraingleOnStart = true;//used to make triangle appear before player even presses a button
@@ -40,19 +41,22 @@ void draw() {
   stroke(255, 255, 255);
   fill(225, 225, 225);
   rect(0, 250, 800, 250);
-
-font = createFont("Monofett.ttf", 32);
-  textFont(font, 32);       
-  fill(0, 0, 0);
-  if (gameScore.getScore() >= 1000) {
-    stroke(0, 0, 0);
-    fill(0, 255, 0);
-  }
-  textAlign(CENTER);  
-  text("SCORE: " + gameScore.getScore(), 100, 25);
-  
-  if (gameScore.getScore() >= 1000)
+if (gameScore.getScore() >= 1000){
     background(0, 0, 0);
+   
+}
+
+font = createFont("stormfaze.ttf", 32);
+  textFont(font, 32);       
+ 
+  if (gameScore.getScore() >= 1000) {
+    fill(0, 255, 0); 
+  }
+  else
+    fill(0,0,0);
+  textAlign(CENTER);  
+  text("SCORE! " + gameScore.getScore(), 100, 25);
+
   if (keyCode == RIGHT && keyPressed) {
     runner.increaseXPos();
   } else if (keyCode == LEFT && keyPressed) {
@@ -99,9 +103,26 @@ font = createFont("Monofett.ttf", 32);
   gameScore.update();
    }
 }
+<<<<<<< HEAD
+=======
+public void keyReleased(){
+     if(key=='r')setup(); 
+}
+
+>>>>>>> origin/master
 public void stop() {
   bgSong.close();
   minim.stop();
   super.stop();
+  endFont = createFont("CodePredators-Regular.ttf", 32);
+  textFont(endFont, 32);       
+  if (gameScore.getScore() >= 1000) 
+    fill(0, 255, 0);
+  else
+  fill(200,0,0);
+  text("You crashed into a cube.",350,185);
+  text("Your score is ! " + score, 350,225);
+  text("Press the \"R\" key to restart" + score, 350,500);
+  keyReleased();
 }
 
