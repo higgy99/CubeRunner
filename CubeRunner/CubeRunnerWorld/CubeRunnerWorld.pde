@@ -11,10 +11,15 @@ PFont endFont;
 PImage bg;
 boolean showTraingleOnStart = true;//used to make triangle appear before player even presses a button
 int i = 50;
-int max = (int)(Math.random()*150)+300;
-int min = max - 50;
+int max = 50;
+int min = max - i;
 int count = 0;
 boolean alive = false;
+int circleX = 0;
+int circleY = 0;
+int radius = 0;
+boolean shot = false;
+
 void setup() {
   size(700, 500, OPENGL);
   //Background Setup
@@ -27,12 +32,9 @@ void setup() {
 }
 
 void draw() {
- System.out.println(i);
- System.out.println("max: " + (max + 200) + " " + max);
- System.out.println("runner: " + (runner.getXPos() + 338));
-   if(i > 370 && runner.getXPos() + 321 > max){
-     stop();
-   }else{
+  if(min > 700){
+ endGame();
+  }else{
   if (keyCode == RIGHT && keyPressed)
     rotateZ(0.01);
   else if (keyCode == LEFT && keyPressed)
@@ -41,19 +43,24 @@ void draw() {
   stroke(255, 255, 255);
   fill(225, 225, 225);
   rect(0, 250, 800, 250);
-if (gameScore.getScore() >= 1000){
-    background(0, 0, 0);
-   
-}
 
-font = createFont("stormfaze.ttf", 32);
-  textFont(font, 32);       
- 
-  if (gameScore.getScore() >= 1000) {
-    fill(0, 255, 0); 
+  if (keyCode == UP  && keyPressed) {
+    System.out.println("UP");
+    circleX = runner.getXPos() + 338;
+    circleY = 422;
+    radius = 10;
+    shot = true;
   }
-  else
-    fill(0,0,0);
+  if (shot)
+    circleY-=5;
+  fill(0, 0, 0);
+  ellipse(circleX, circleY, radius, radius);
+
+  font = createFont("stormfaze.ttf", 32);
+  textFont(font, 32);       
+
+
+  fill(0, 0, 0);
   textAlign(CENTER);  
   text("SCORE! " + gameScore.getScore(), 100, 25);
 
@@ -66,63 +73,49 @@ font = createFont("stormfaze.ttf", 32);
     translate(runner.getXPos(), 0);
     fill(100, 100, 100);
     stroke(225, 225, 225);
-    if (gameScore.getScore() >= 1000) {
-      stroke(0, 0, 0);
-      fill(0, 255, 0);
-    }
     triangle(321, 455, 338, 422, 355, 455);
     fill(225, 225, 225);
-    if (gameScore.getScore() >= 1000) {
-      stroke(0, 0, 0);
-      fill(0, 0, 0);
-    }
     triangle(321, 455, 338, 440, 355, 455);
     translate(-runner.getXPos(), 0);
   }
   new Cube().display();
-  if (gameScore.getScore() >= 1000) {
-    stroke(0, 255, 0);
-    fill(0, 0, 0);
-  }
-  if (i > 391) {
-    max = 300;
-    min = max - 50;
-  }
-  translate(0, 250, i);
-  for (int i = 0; i < 700; i+=7) {
-    if (!(i < max && i > min)) {
+
+  translate(0, 250, 0);
+  for (int i = 0; i < 700; i+=5) {
+    if ((i < max && i > min)) {
       translate(i, 0);
-      box(7);
+      box(30);
       translate(-i, 0);
     }
   }
-  i+=4;
-  if (i > 400) {
-    i = 100;
+  max+=2;
+  min+=2;
+  if (circleY < 230) {
+    shot = false;
+    circleY = 422;
+    radius = 0;
+  }
+  if ((circleY < 250 && circleX >= min-20 && circleX <= max+20)) {
+    max = 50;
+    min = max - (int)(Math.random()*40)-20;
+    shot = false;
+    circleY = 422;
+    radius = 0;
   }
   gameScore.update();
-   }
-}
-<<<<<<< HEAD
-=======
-public void keyReleased(){
-     if(key=='r')setup(); 
+  }
 }
 
->>>>>>> origin/master
-public void stop() {
+
+public void endGame() {
+  endFont = createFont("stormfaze.ttf", 32);
+  textFont(endFont, 32);       
+  fill(0, 0, 0);
+  text("THE BLOCK GOT AWAY!!", 350, 185);
+  text("Your score is : " + gameScore.getScore(), 350, 225);
+  text("Press the \"R\" key to restart" + score, 350, 500);
   bgSong.close();
   minim.stop();
   super.stop();
-  endFont = createFont("CodePredators-Regular.ttf", 32);
-  textFont(endFont, 32);       
-  if (gameScore.getScore() >= 1000) 
-    fill(0, 255, 0);
-  else
-  fill(200,0,0);
-  text("You crashed into a cube.",350,185);
-  text("Your score is ! " + score, 350,225);
-  text("Press the \"R\" key to restart" + score, 350,500);
-  keyReleased();
 }
 

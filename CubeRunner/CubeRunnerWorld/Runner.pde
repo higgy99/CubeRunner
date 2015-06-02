@@ -16,5 +16,9 @@ public class Runner {
   public int getXPos() {
     return runnerXPos;
   }
+  
+  public void resetRunnerPos(){
+  runnerXPos = 0;
+  }
 }
 
