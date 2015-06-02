@@ -10,8 +10,10 @@ PFont font;
 PImage bg;
 boolean showTraingleOnStart = true;//used to make triangle appear before player even presses a button
 int i = 50;
-int max = 0;
-int min = 0;
+int max = (int)(Math.random()*150)+300;
+int min = max - 50;
+int count = 0;
+boolean alive = false;
 void setup() {
   size(700, 500, OPENGL);
   //Background Setup
@@ -24,6 +26,12 @@ void setup() {
 }
 
 void draw() {
+ System.out.println(i);
+ System.out.println("max: " + (max + 200) + " " + max);
+ System.out.println("runner: " + (runner.getXPos() + 338));
+   if(i > 370 && runner.getXPos() + 321 > max){
+     stop();
+   }else{
   if (keyCode == RIGHT && keyPressed)
     rotateZ(0.01);
   else if (keyCode == LEFT && keyPressed)
@@ -72,9 +80,9 @@ font = createFont("Monofett.ttf", 32);
     stroke(0, 255, 0);
     fill(0, 0, 0);
   }
-  if (i > 390) {
-    max = (int)(Math.random()*150)+300;
-    min = max - 30;
+  if (i > 391) {
+    max = 300;
+    min = max - 50;
   }
   translate(0, 250, i);
   for (int i = 0; i < 700; i+=7) {
@@ -89,8 +97,8 @@ font = createFont("Monofett.ttf", 32);
     i = 100;
   }
   gameScore.update();
+   }
 }
-
 public void stop() {
   bgSong.close();
   minim.stop();
