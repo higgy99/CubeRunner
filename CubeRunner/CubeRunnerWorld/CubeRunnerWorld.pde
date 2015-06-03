@@ -10,14 +10,14 @@ PFont endFont;
 //shape and translation vars
 boolean showTraingleOnStart = true;//used to make triangle appear before player even presses a button
 int i = 50;
-int max = 50;
-int min = max - i;
+double max = 50;
+double min = max - i;
 int count = 0;
 int circleX = 0;
 int circleY = 0;
 int radius = 0;
 boolean shot = false;
-
+double blockSpeed = Math.random()*0.5 + 5;
 void setup() {
   size(700, 500, OPENGL);//game size
   minim = new Minim(this);//Music setup
@@ -82,8 +82,8 @@ void draw() {
         translate(-i, 0);
       }
     }
-    max+=3;//speed of block
-    min+=3;
+    max+=blockSpeed;//speed of block
+    min+=blockSpeed;
 
     if (circleY < 230) {
       shot = false;
@@ -98,6 +98,7 @@ void draw() {
       radius = 0;
     }
     gameScore.update();
+    blockSpeed = Math.random()*0.5 + 1;
   }
 }
 
