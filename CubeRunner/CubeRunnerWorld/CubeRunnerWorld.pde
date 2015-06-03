@@ -18,11 +18,15 @@ int circleY = 0;
 int radius = 0;
 boolean shot = false;
 double blockSpeed = Math.random()*0.5 + 1;
+//color
+int[] blockColors = new int[3];
 void setup() {
   size(700, 500, OPENGL);//game size
   minim = new Minim(this);//Music setup
   bgSong = minim.loadFile("bg.mp3", 2048);//load song
   bgSong.play();//play song
+  for(int i = 0; i < blockColors.length; i++)
+      blockColors[i] = (int)(Math.random() * 250 + 1);
 }
 
 void draw() {
@@ -75,6 +79,7 @@ void draw() {
 
     new Cube().display();
     translate(0, 250, 0);
+    fill(blockColors[0], blockColors[1], blockColors[2]);
     for (int i = 0; i < 700; i+=5) {
       if ((i < max && i > min)) {
         translate(i, 0);
@@ -97,6 +102,8 @@ void draw() {
       circleY = 422;
       radius = 0;
       blockSpeed+=0.5;//speeds up block as you get further
+      for(int i = 0; i < blockColors.length; i++)
+      blockColors[i] = (int)(Math.random() * 250 + 1);
     }
     gameScore.update();
   }
