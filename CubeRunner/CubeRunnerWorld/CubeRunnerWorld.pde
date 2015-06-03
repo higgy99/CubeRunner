@@ -17,7 +17,7 @@ int circleX = 0;
 int circleY = 0;
 int radius = 0;
 boolean shot = false;
-double blockSpeed = Math.random()*0.5 + 5;
+double blockSpeed = Math.random()*0.5 + 1;
 void setup() {
   size(700, 500, OPENGL);//game size
   minim = new Minim(this);//Music setup
@@ -49,7 +49,7 @@ void draw() {
     }
     if (shot)//if bullet was shot, then move bullet
         circleY-=5;
-    fill((int)((Math.random())*255 + 100), (int)((Math.random())*225 - 100), (0));
+     fill((int)((Math.random())*255 + 100), (int)((Math.random())*225 - 100), (0));
     ellipse(circleX, circleY, radius, radius);
 
     font = createFont("stormfaze.ttf", 32);
@@ -96,9 +96,9 @@ void draw() {
       shot = false;
       circleY = 422;
       radius = 0;
+      blockSpeed+=0.5;//speeds up block as you get further
     }
     gameScore.update();
-    blockSpeed = Math.random()*0.5 + 1;
   }
 }
 
@@ -120,5 +120,6 @@ public void restartGame() {
   min = 0;
   bgSong = minim.loadFile("bg.mp3", 2048);
   bgSong.play();
+  blockSpeed = Math.random()*0.5 + 1;
 }
 
