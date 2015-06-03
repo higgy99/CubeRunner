@@ -49,7 +49,7 @@ void draw() {
     }
     if (shot)//if bullet was shot, then move bullet
         circleY-=5;
-    fill(0, 0, 0);
+    fill((int)((Math.random())*255 + 100), (int)((Math.random())*225 - 100), (0));
     ellipse(circleX, circleY, radius, radius);
 
     font = createFont("stormfaze.ttf", 32);
