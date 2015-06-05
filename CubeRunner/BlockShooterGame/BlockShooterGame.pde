@@ -76,39 +76,40 @@ void draw() {
       translate(-runner.getXPos(), 0);//undo translate so it is does not carry over 
    
 
-    new Cube().display();//apply style of blocks
-    translate(0, 250, 0);
+    new Cube().display();//apply style of blocks(blocks are made of many cubess)
+    translate(0, 250, 0);//gives block it's y-coordinate
     fill(blockColors[0], blockColors[1], blockColors[2]);
-    for (int i = 0; i < 700; i+=5) {
-      if ((i < max && i > min)) {
-        translate(i, 0);
+    for (int i = 0; i < 700; i+=5) {//new block color for new block
+      if ((i < max && i > min)) {//creates block of certain length by lining up many cubes
+        translate(i, 0);//move block across the page
         box(30);
-        translate(-i, 0);
+        translate(-i, 0);//prevent translation from carrying over
       }
     }
-    max+=blockSpeed;//speed of block
+    //increase speed of block
+    max+=blockSpeed;
     min+=blockSpeed;
 
-    if (circleY < 230) {
+    if (circleY < 230) {//checks if circle missed and resets bullet if it has
       shot = false;
       circleY = 422;
       radius = 0;
     }
-    if ((circleY < 250 && circleX >= min-20 && circleX <= max+20)) {
+    if ((circleY < 250 && circleX >= min-20 && circleX <= max+20)) {//checks if circle has hit block and makes a new block and resets bullet if it has
       max = 50;
       min = max - (int)(Math.random()*40)-20;
       shot = false;
       circleY = 422;
       radius = 0;
-      blockSpeed+=0.5;//speeds up block as you get further
+      blockSpeed+=0.5;//speeds up block as you get further in the game
       for(int i = 0; i < blockColors.length; i++)
       blockColors[i] = (int)(Math.random() * 250 + 1);//produce a random color for every new block
     }
-    gameScore.update();
+    gameScore.update();//update the score
   }
 }
 
-
+//lets the player know that they have lost as well as telling them their score and how to restart the game
 public void endGame() {
   endFont = createFont("stormfaze.ttf", 32);
   textFont(endFont, 32);       
@@ -119,6 +120,7 @@ public void endGame() {
   bgSong.close();
 }
 
+//resets variables for a new game
 public void restartGame() {
   gameScore.resetScore();
   runner.resetRunnerPos();
